@@ -9,19 +9,24 @@ router = APIRouter()
 
 @router.get('/vizbacker')
 async def visual():
-    # load in airbnb dataset
-    DATA_PATH = 'https://raw.githubusercontent.com/evangrinalds/files/master/data/%24_per_backer.csv'
+    # load in dataset
+    DATA_PATH = 'https://raw.githubusercontent.com/evangrinalds/files/master/data/goal.csv'
     df = pd.read_csv(DATA_PATH, index_col=0)
+    
+    labels = ['$5,000', '$10,000', '$15,000', '$20,000', '$25,000+']
+    values = [233, 72, 26, 21, 31]
 
-    x = ['$0-25', '$25-50', '$50-75', '$75-100', '$100-125', '$125-150', '$150-175', '$175-200', '$200+']
-    y = [93, 100, 78, 37, 30, 12, 5, 7, 33]
+    # Use `hole` to create a donut-like pie chart
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
 
-    fig = go.Figure(data=[go.Bar(x=x, y=y)])
+    annotations = []
+    annotations.append(dict(xref='paper', yref='paper',
+                        x=0.5, y=1.16,
+                        text='Goal Amount From Successful Kickstart Projects',
+                        font=dict(family='Arial', size=16, color='rgb(0,0,0)'),
+                        showarrow=False))
 
-    # Customize aspect
-    fig.update_traces(marker_color='rgb(28,186,28)', marker_line_color='rgb(11,74,11)',
-                      marker_line_width=4.5, opacity=0.6)
+    fig.update_layout(annotations=annotations)
 
-    fig.update_layout(title_text='Pledge Amount From Backers of Successful Kickstarter Projects')
     fig.show()
     return fig.to_json()
