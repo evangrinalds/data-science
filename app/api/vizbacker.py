@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get('/vizbacker')
 async def visual():
     # load in airbnb dataset
-    DATA_PATH = 'https://raw.githubusercontent.com/Air-BnB-2-BW/data-science/master/data/%24_per_backer.csv'
+    DATA_PATH = 'https://raw.githubusercontent.com/evangrinalds/files/master/data/%24_per_backer.csv'
     df = pd.read_csv(DATA_PATH, index_col=0)
 
     x = ['$0-25', '$25-50', '$50-75', '$75-100', '$100-125', '$125-150', '$150-175', '$175-200', '$200+']
