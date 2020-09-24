@@ -6,7 +6,7 @@ from app.api import predict, viz
 
 app = FastAPI(
     title='Kickstarter API',
-    description='Basic API to Predict Kick Starter success',
+    description='Basic API to Predict Kickstarter success',
     version='0.1',
     docs_url='/',
 )
