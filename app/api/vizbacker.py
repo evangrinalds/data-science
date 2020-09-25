@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.get('/vizbacker')
 async def visual():
-    # load in airbnb dataset
+    # load in dataset
     DATA_PATH = 'https://raw.githubusercontent.com/evangrinalds/files/master/data/%24_per_backer.csv'
     df = pd.read_csv(DATA_PATH, index_col=0)
 
